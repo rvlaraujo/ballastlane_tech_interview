@@ -1,5 +1,5 @@
 class Gender < ApplicationRecord
-  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
+  normalizes :name, with: ->(name) { name.strip.upcase }
   
-  
+  validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 50 }
 end
