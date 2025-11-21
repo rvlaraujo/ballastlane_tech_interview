@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17.6-alpine3.21
+    ports:
+      - "3354:5433"
+    networks:
+      - ballastlane
+    env_file: ./.etc/docker/db/.env.test
+    container_name: db-test
+    volumes:
+      - db_data_test:/var/lib/postgresql/data
+  api:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile.test
+    stdin_open: true
+    tty: true
+    container_name: api-test
+    volumes:
+      - ./api:/rails
+      - bundler_cache:/home/rails/.bundle # bundler cache
+    ports:
+      - "3000:3000"
+    networks:
+      - ballastlane
+    env_file: ./.etc/docker/api/.env.test
+    depends_on:
+      - db
+    environment:
+      - BIDING=0.0.0.0
+volumes:
+  db_data_test:
+  bundler_cache:
+networks:
+  ballastlane:
+    name: ballastlane
