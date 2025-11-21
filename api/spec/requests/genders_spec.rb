@@ -46,7 +46,7 @@ RSpec.describe "/genders", type: :request do
         post genders_url, params: valid_params, headers: json_headers
         
         expect(response).to have_http_status(:success)
-        expect(response.parsed_body['name']).to eq('Action') 
+        expect(response.parsed_body['name']).to eq('Action'.upcase) 
       end
     end
 
@@ -82,8 +82,8 @@ RSpec.describe "/genders", type: :request do
         patch gender_path(model, format: :json), params: valid_params, headers: json_headers
         expect(response).to have_http_status(:success)
         model.reload
-        expect(response.parsed_body['name']).to eq(new_gender_name)
-        expect(model.name).to eq(new_gender_name)
+        expect(response.parsed_body['name']).to eq(new_gender_name.upcase)
+        expect(model.name).to eq(new_gender_name.upcase)
       end
     end
   end
