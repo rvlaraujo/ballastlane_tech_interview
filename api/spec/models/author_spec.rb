@@ -7,4 +7,9 @@ RSpec.describe Author, type: :model do
     it { should validate_uniqueness_of(:name).ignoring_case_sensitivity }
     it { should validate_length_of(:name).is_at_least(3).is_at_most(150) }
   end
+
+  describe 'relations' do
+    subject { build(:author) }
+    it { should have_many(:books) }
+  end
 end
