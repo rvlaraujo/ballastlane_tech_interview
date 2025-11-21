@@ -42,6 +42,35 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
+  # [https://github.com/thoughtbot/factory_bot_rails]
+  gem 'factory_bot_rails', '~> 6.5.1'
+  
+  # Generate fake data such as names, addresses, and phone numbers [https://github.com/faker-ruby/faker]
+  gem 'faker', '~> 3.5.2'
+
+  # RSpec test gem used with Rails [https://github.com/rspec/rspec-rails]
+  gem 'rspec-rails', '~> 8.0.2'
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Performance optimization analysis for your projects, as an extension to RuboCop [https://github.com/rubocop/rubocop-performance]
+  gem 'rubocop-performance', '~> 1.26.1', require: false
+  
+  # Analysis rails code, as an extension to RuboCop [https://github.com/rubocop/rubocop-rails]
+  gem 'rubocop-rails', '~> 2.33.4', require: false
+end
+
+group :test do
+  # ActiveRecord integration with Database Cleaner gem (https://github.com/DatabaseCleaner/database_cleaner).
+  gem 'database_cleaner-active_record', '~> 2.2.2'
+  
+  # Rubocop extension for FactoryBot [https://github.com/rubocop/rubocop-factory_bot]
+  gem 'rubocop-factory_bot', '~> 2.27.1', require: false
+  
+  # Rubocop extension for Rspec [https://github.com/rubocop/rubocop-rspec]
+  gem 'rubocop-rspec', '~> 3.7.0', require: false
+
+  # RSpec one-liners to test common Rails functionality [https://github.com/thoughtbot/shoulda-matchers]
+  gem 'shoulda-matchers', '~> 6.5.0'
 end
